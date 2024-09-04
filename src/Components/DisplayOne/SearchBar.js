@@ -53,7 +53,7 @@ export default function SearchBar({index, setActiveSection}) {
           value={searchQuery}
           onChange={e => setSearchQuery(e.target.value)}
         />
-        <button onClick={HandleSubmit}>Search</button>    
+        <button onClick={HandleSubmit} className={searchQuery.length>0?'button-visible': 'button-hidden'}>Search</button>    
       </div>
       {filteredCities?
         <div className='search-options'>

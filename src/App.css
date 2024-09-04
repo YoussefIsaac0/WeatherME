@@ -70,6 +70,9 @@ body{
   color:white;
   text-align:center
 }
+.resizable{
+  /*Add resize functionality*/
+}
 /* Loading */
 #loading{
   min-width: 50px;
@@ -220,8 +223,7 @@ body{
   z-index: 1;
   flex-shrink: 0;
 }
-.day-forcast-container > :first-child{
-}
+
 .day-forcast-container::-webkit-scrollbar{
   width:0;
 }
@@ -378,8 +380,6 @@ form{
 
 
 .form > button{
-  display:none;
-  width:0px;
   font-weight: bold;
   border-radius: 0px 10px 10px 0px;
   padding: 15px;
@@ -393,11 +393,15 @@ form{
 .form > input:not(:placeholder-shown) {
   border-radius: 10px 0px 0px 10px;
 
-  + button {
-    display: block;
-    width:fit-content;
-  }
   
+  
+}
+.button-hidden{
+  display:none;
+}
+.button-visible {
+  display: block;
+  width:fit-content;
 }
 
 .drop-area{

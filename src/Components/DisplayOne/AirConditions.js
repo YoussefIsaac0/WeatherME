@@ -18,7 +18,7 @@ export default function AirConditions({ index, setActiveSection, arr }) {
 
   return (
     <div 
-      className='container drag'
+      className='container drag resizable'
       ref={containerRef}
       style={{ width: '100%' }}
       draggable
