@@ -22,9 +22,8 @@ function App() {
   const [cities,setCities] = useState(null);
  
 
-  useEffect(() => {      
-    console.log('Weather API Key:', ); 
-    console.log('Country API Key:', process.env.REACT_APP_API_COUNTRY);
+  useEffect(() => {
+    console.log( `env url is ${process.env.PUBLIC_URL}`)      
     // Getting GeoLocation (User location based on latitude & longitude)
     GetGeoLocation()
     .then((loc) => {
