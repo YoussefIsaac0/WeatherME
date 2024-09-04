@@ -98,7 +98,8 @@ function App() {
   
 
   return (
-    <div className="App" style={{}}>
+    <div style={{}}>
+      <div className='App'>
       {loading && <Loading/>}
       {error != null && <Error errorMsg={error}/>}
       {!loading && !error && weatherData && display1? (
@@ -111,6 +112,7 @@ function App() {
         </div>
         </div>
       ):null}
+      </div>
       {!display1 && !loading && !error? <DisplayContext.Provider value={{display1,setDisplay1}}>
        <SecondDisplay city={city} />
        </DisplayContext.Provider>: null}
