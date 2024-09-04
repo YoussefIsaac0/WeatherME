@@ -23,7 +23,7 @@ function App() {
  
 
   useEffect(() => {      
-    console.log('Weather API Key:', process.env.REACT_APP_API_WEATHER); 
+    console.log('Weather API Key:', ); 
     console.log('Country API Key:', process.env.REACT_APP_API_COUNTRY);
     // Getting GeoLocation (User location based on latitude & longitude)
     GetGeoLocation()
@@ -50,7 +50,7 @@ function App() {
       axios.get('https://api.worldweatheronline.com/premium/v1/weather.ashx', {
       params: {
           q: latitude?(latitude + "," + longitude): city,
-          key: WorldWeatherApiKey,
+          key: process.env.REACT_APP_API_WEATHER,
           format: 'json',
           lang: 'english',
           showmap: 'yes',
@@ -70,7 +70,7 @@ function App() {
       if(lat===true && long ===true) return GetCities(country)
       axios.get('https://api.opencagedata.com/geocode/v1/json?',{
         params:{
-          key: CountryApiKey,
+          key: process.env.REACT_APP_API_COUNTRY,
           q:lat+'%2C'+long,
         }
       }).then((evt)=>{
