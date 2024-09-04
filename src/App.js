@@ -9,6 +9,7 @@ import DisplayContext from './DisplayContext.js';
 import Loading from './Components/Loading.js';
 import Error from './Components/Error.js';
 
+
 const WorldWeatherApiKey = process.env.REACT_APP_API_WEATHER
 const CountryApiKey = process.env.REACT_APP_API_COUNTRY
 function App() {
@@ -23,7 +24,7 @@ function App() {
  
 
   useEffect(() => {
-    console.log( `env url is ${process.env.PUBLIC_URL}`)      
+    console.log(process.env.REACT_APP_API_WEATHER)      
     // Getting GeoLocation (User location based on latitude & longitude)
     GetGeoLocation()
     .then((loc) => {
@@ -46,7 +47,7 @@ function App() {
       
     // API for getting weather data
     const fetchWeatherData = (latitude,longitude,city) =>{
-      axios.get('https://api.worldweatheronline.com/premium/v1/weather.ashx', {
+      axios.get('http://api.worldweatheronline.com/premium/v1/weather.ashx', {
       params: {
           q: latitude?(latitude + "," + longitude): city,
           key: process.env.REACT_APP_API_WEATHER,
@@ -67,7 +68,7 @@ function App() {
 
     const GetCountryName= (lat,long) => {
       if(lat===true && long ===true) return GetCities(country)
-      axios.get('https://api.opencagedata.com/geocode/v1/json?',{
+      axios.get('http://api.opencagedata.com/geocode/v1/json?',{
         params:{
           key: process.env.REACT_APP_API_COUNTRY,
           q:lat+'%2C'+long,
@@ -97,7 +98,7 @@ function App() {
   
 
   return (
-    <div className="App">
+    <div className="App" style={{}}>
       {loading && <Loading/>}
       {error != null && <Error errorMsg={error}/>}
       {!loading && !error && weatherData && display1? (

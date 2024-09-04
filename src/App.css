@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  display:flex;
+  align-items:center;
+  justify-content:center
 }
 html{
   width:100%;
@@ -281,11 +284,9 @@ body{
   justify-content:center;
   align-items: center;
   padding-top: 20px;
+  gap:50px
 }
-.main-container-one >:last-child{
-  margin-left:50px
-  
-}
+
 .sub-container-one{
   display:flex;
   flex-direction: column;
@@ -528,7 +529,7 @@ form{
     padding-left:0px;
   }
   .week-forecast-container{
-    width:80vw;
+    width:100%;
     overflow-y: scroll;
     height:40vh;
     
@@ -539,11 +540,15 @@ form{
   .main-container-one{
     flex-direction: column;
     align-items: center;
+    width:95%;
+    gap:10px
   }
   .sub-container-two{
-    width:80vw;
+    width:85vw;
     align-items: center;
-    margin-right: 5%;
+  }
+  .App{
+    gap:10px;
   }
   .second-display{
     margin:0;
@@ -551,6 +556,7 @@ form{
     justify-content: center;
     align-items: center;
   }
+  
 }
 @media screen and (max-width:400px) {
   .charts{
