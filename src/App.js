@@ -47,7 +47,7 @@ function App() {
       
     // API for getting weather data
     const fetchWeatherData = (latitude,longitude,city) =>{
-      axios.get('http://api.worldweatheronline.com/premium/v1/weather.ashx', {
+      axios.get('https://api.worldweatheronline.com/premium/v1/weather.ashx', {
       params: {
           q: latitude?(latitude + "," + longitude): city,
           key: process.env.REACT_APP_API_WEATHER,
@@ -68,7 +68,7 @@ function App() {
 
     const GetCountryName= (lat,long) => {
       if(lat===true && long ===true) return GetCities(country)
-      axios.get('http://api.opencagedata.com/geocode/v1/json?',{
+      axios.get('https://api.opencagedata.com/geocode/v1/json?',{
         params:{
           key: process.env.REACT_APP_API_COUNTRY,
           q:lat+'%2C'+long,
