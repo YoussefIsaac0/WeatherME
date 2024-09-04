@@ -21,7 +21,7 @@ export default function SecondDisplay({city}) {
       useEffect(() => {
         // Calling the API for getting weather data
         axios
-        .get('http://api.worldweatheronline.com/premium/v1/weather.ashx', {
+        .get('https://api.worldweatheronline.com/premium/v1/weather.ashx', {
           params: {
               q: city, 
               key: WorldWeatherApiKey,
