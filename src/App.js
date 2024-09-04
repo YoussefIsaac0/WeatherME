@@ -100,20 +100,17 @@ function App() {
   if (error) return <Error errorMsg={error} />;
 
   return (
-    <div style={{}}>
-      <div className='App'>
+      
       <DisplayContext.Provider value={{ cities, setCity }}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Navigate to="/first-display" />} />
-          <Route path="/first-display" element={<DisplayOne weatherData={weatherData} country={country} />} />
+          <Route path="/first-display" element={<div className='App'><DisplayOne weatherData={weatherData} country={country} /> </div>} />
           <Route path="/second-display" element={<SecondDisplay city={city} />} />
         </Routes>
       </BrowserRouter>
     </DisplayContext.Provider>
     
-    </div>
-    </div>
   );
 }
 
