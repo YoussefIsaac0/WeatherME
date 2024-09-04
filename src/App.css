@@ -513,12 +513,12 @@ form{
     justify-content: center;
   }
   .second-display-main-container{
-    width: 99%;
+    width: 97%;
     margin:0;
     padding:0px;
   }
   .second-display-sub-container{
-    width:90%;
+    width:88%;
   }
   .prop-container{
     flex-wrap: wrap;
