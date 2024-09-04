@@ -7,9 +7,9 @@ export default function AirConditions({ index, setActiveSection, arr }) {
 
   const airConditionsData = [
     { icon: "/Images/humidity.svg", label: "Humidity", value: `${GetCurrentData(arr, 'humidity')}%` },
-    { icon: "./Images/images/sun.svg", label: "UV", value: GetCurrentData(arr, 'uvIndex') },
-    { icon: "./Images/images/visibility.png", label: "Visibility", value: GetCurrentData(arr, 'visibility') },
-    { icon: "./Images/images/wind.png", label: "Wind", value: `${GetCurrentData(arr, 'windspeedKmph')} km/h` }
+    { icon: "/Images/images/sun.svg", label: "UV", value: GetCurrentData(arr, 'uvIndex') },
+    { icon: "/Images/images/visibility.png", label: "Visibility", value: GetCurrentData(arr, 'visibility') },
+    { icon: "/Images/images/wind.png", label: "Wind", value: `${GetCurrentData(arr, 'windspeedKmph')} km/h` }
   ];
 
   if (!arr || !arr['data'] || !arr['data'].current_condition) {

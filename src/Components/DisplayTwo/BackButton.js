@@ -8,7 +8,7 @@ export default function BackButton() {
     }
   return (
     <div className='container' id="back-button" onClick={HandleBack}>
-        <img src='./Images/back.svg' alt="back"/>
+        <img src='/Images/back.svg' alt="back"/>
     </div>
   )
 }
