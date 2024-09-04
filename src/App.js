@@ -23,6 +23,8 @@ function App() {
  
 
   useEffect(() => {      
+    console.log('Weather API Key:', process.env.REACT_APP_API_WEATHER); 
+    console.log('Country API Key:', process.env.REACT_APP_API_COUNTRY);
     // Getting GeoLocation (User location based on latitude & longitude)
     GetGeoLocation()
     .then((loc) => {
