@@ -1,10 +1,12 @@
 import React, { useContext } from 'react'
 import DisplayContext from '../../DisplayContext'
+import { useNavigate } from 'react-router-dom'
 
 export default function BackButton() {
-    const {display1,setDisplay1} =useContext(DisplayContext)
+    const navigate = useNavigate();
     const HandleBack = () =>{
-        setDisplay1(true)
+        navigate('/first-display')
+
     }
   return (
     <div className='container' id="back-button" onClick={HandleBack}>

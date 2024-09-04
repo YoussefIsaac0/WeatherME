@@ -8,6 +8,8 @@ import SecondDisplay from './Components/DisplayTwo/SecondDisplay.js';
 import DisplayContext from './DisplayContext.js';
 import Loading from './Components/Loading.js';
 import Error from './Components/Error.js';
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import DisplayOne from './Components/DisplayOne/DisplayOne.js';
 
 
 const WorldWeatherApiKey = process.env.REACT_APP_API_WEATHER
@@ -16,7 +18,6 @@ function App() {
  //Defining Necessary States
   const [error, setError] = useState(null);
   const [weatherData, setWeatherData] = useState(null);
-  const [display1,setDisplay1]=useState(true);
   const [loading, setLoading] = useState(true)
   const [country, setCountry]=useState('Egypt')
   const [city,setCity]= useState('Cairo')
@@ -95,28 +96,23 @@ function App() {
 
   console.log(weatherData);
   
-  
+  if (loading) return <Loading />;
+  if (error) return <Error errorMsg={error} />;
 
   return (
     <div style={{}}>
       <div className='App'>
-      {loading && <Loading/>}
-      {error != null && <Error errorMsg={error}/>}
-      {!loading && !error && weatherData && display1? (
-        <div className='main-container-one' style={{}}>
-        <DisplayContext.Provider value={{display1,setDisplay1, cities, setCity}}>
-          <DisplayOneMainSection weatherData={weatherData} country={country}/>
-        </DisplayContext.Provider>
-        <div className='sub-container-two'>
-          <WeekForcast  index={4} weeks={weatherData['data'].weather}/>
-        </div>
-        </div>
-      ):null}
-      </div>
-      {!display1 && !loading && !error? <DisplayContext.Provider value={{display1,setDisplay1}}>
-       <SecondDisplay city={city} />
-       </DisplayContext.Provider>: null}
+      <DisplayContext.Provider value={{ cities, setCity }}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Navigate to="/first-display" />} />
+          <Route path="/first-display" element={<DisplayOne weatherData={weatherData} country={country} />} />
+          <Route path="/second-display" element={<SecondDisplay city={city} />} />
+        </Routes>
+      </BrowserRouter>
+    </DisplayContext.Provider>
     
+    </div>
     </div>
   );
 }

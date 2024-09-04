@@ -1,10 +1,7 @@
 import React, { Component, useState } from 'react'
 import { GetCurrentData, GetDailyTemperature, GetHourlyTemperature } from '../../Helper'
 import WeatherPropContainer from './WeatherPropContainer'
-import BarChart from './DayTempBarChart'
-import UVIndexChart from './DoughnutChartUV'
 import D3LineChart from './D3LineChart'
-import useMouseHoverEffect from '../../useMouseHoverEffect'
 import DraggableContent from '../DraggableContent'
 import DayTempBarChart from './DayTempBarChart'
 export default function SecondDisplayMainSection({weatherData}) {

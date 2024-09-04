@@ -2,12 +2,14 @@ import React, { useContext, useEffect, useState } from 'react'
 import DisplayContext from '../../DisplayContext'
 import 'react-toastify/dist/ReactToastify.css';
 import { toast, ToastContainer } from 'react-toastify';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 export default function SearchBar({index, setActiveSection}) {
   const { display1, setDisplay1, cities, setCity } = useContext(DisplayContext)
   const [filteredCities, setFilteredCities] = useState(cities)
   const [searchQuery, setSearchQuery] = useState('')
-  
+  const navigate = useNavigate(); 
+
   useEffect(() => {
     if(cities){
       if (searchQuery === '') {
@@ -29,7 +31,7 @@ export default function SearchBar({index, setActiveSection}) {
     e.preventDefault(); // Prevent form submission
     if(IsInputValid()){
       setCity(searchQuery)
-      setDisplay1(false);
+      navigate('/second-display')
     }
     else toast.error('Please select a valid city.');
 

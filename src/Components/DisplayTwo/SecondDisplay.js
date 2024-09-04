@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Loading from '../Loading';
 import Error from '../Error';
 import DisplayContext from '../../DisplayContext';
+import { Navigate, useNavigate } from 'react-router-dom';
 const WorldWeatherApiKey = process.env.REACT_APP_API_WEATHER
 
 export default function SecondDisplay({city}) {
@@ -13,9 +14,10 @@ export default function SecondDisplay({city}) {
       const [weatherData,setWeatherData]= useState(null);
       const [loading,setLoading]=useState(true);
       const [error,setError] = useState(null)
+      const navigate = useNavigate();
       const handleError = () =>{
         setTimeout(() => {
-          setDisplay1(true)
+          navigate('/first-display')
         }, 3000);
       }
       useEffect(() => {
