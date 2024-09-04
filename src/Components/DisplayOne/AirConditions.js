@@ -6,7 +6,7 @@ export default function AirConditions({ index, setActiveSection, arr }) {
   const containerRef = useMouseHoverEffect();
 
   const airConditionsData = [
-    { icon: "./../../images/humidity.svg", label: "Humidity", value: `${GetCurrentData(arr, 'humidity')}%` },
+    { icon: "./images/humidity.svg", label: "Humidity", value: `${GetCurrentData(arr, 'humidity')}%` },
     { icon: "../../../images/sun.svg", label: "UV", value: GetCurrentData(arr, 'uvIndex') },
     { icon: "../../../images/visibility.png", label: "Visibility", value: GetCurrentData(arr, 'visibility') },
     { icon: "../../../images/wind.png", label: "Wind", value: `${GetCurrentData(arr, 'windspeedKmph')} km/h` }
