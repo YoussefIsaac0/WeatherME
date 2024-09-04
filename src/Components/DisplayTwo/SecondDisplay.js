@@ -32,7 +32,7 @@ export default function SecondDisplay({city}) {
           })
           .then((evt) => {
             setWeatherData(evt.data);
-            console.log("EVENT DATA =>")
+            //console.log("EVENT DATA =>")
             console.log(evt?.['data']?.data?.['error']?.[0])
             if(evt?.['data']?.data?.['error']?.length>0 ?? false){setLoading(false); setError("This city's data is not available at the moment, redirecting you to the main page...");return handleError()}
             setLoading(false);
