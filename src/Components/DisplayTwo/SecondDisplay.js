@@ -40,10 +40,11 @@ export default function SecondDisplay({city}) {
             setLoading(false);
           
           })
-          .catch((err) => {
+          .catch(err => {
             console.log('Error fetching weather data', err);
             setLoading(false)
-            setError(err.msg)
+            setError(err.message)
+            return handleError()
           });
   
       }, []);
