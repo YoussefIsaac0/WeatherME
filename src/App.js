@@ -25,30 +25,33 @@ function App() {
  
 
   useEffect(() => {
-    console.log(process.env.REACT_APP_API_WEATHER)      
+    console.log(process.env.REACT_APP_API_WEATHER);    
     // Getting GeoLocation (User location based on latitude & longitude)
-    GetGeoLocation()
-    .then((loc) => {
+    (async () => {
+      try {
+        const loc = await GetGeoLocation();
+    
         if (loc) {
-          fetchWeatherData(loc.latitude,loc.longitude,null);
-          GetCountryName(loc.latitude,loc.longitude);
-          
-        } else { //Data isn't valid, fetch default country;
-          fetchWeatherData(null,null,"Egypt")
-          GetCountryName(true,true);
-
+          // If location is available, fetch weather data and country name based on location
+          await fetchWeatherData(loc.latitude, loc.longitude, null);
+          await GetCountryName(loc.latitude, loc.longitude);
+        } else {
+          // If location is not available, fetch default country data
+          await fetchWeatherData(null, null, "Egypt");
+          await GetCountryName(true, true);
         }
-      })
-      .catch((e) => { //return weather data of default country
-        fetchWeatherData(null,null,"Egypt")
-        console.log(e.message)
-        GetCountryName(true, true);
-
-      });
-      
+      } catch (error) {
+        // Handle error by fetching default country data
+        await fetchWeatherData(null, null, "Egypt");
+        console.error('Error fetching location:', error.message);
+        await GetCountryName(true, true);
+      }
+    })();
+          
     // API for getting weather data
-    const fetchWeatherData = (latitude,longitude,city) =>{
-      axios.get('https://api.worldweatheronline.com/premium/v1/weather.ashx', {
+    const fetchWeatherData = async (latitude,longitude,city) =>{
+      try{
+      const response = await axios.get('https://api.worldweatheronline.com/premium/v1/weather.ashx', {
       params: {
           q: latitude?(latitude + "," + longitude): city,
           key: process.env.REACT_APP_API_WEATHER,
@@ -57,40 +60,41 @@ function App() {
           showmap: 'yes',
         },
       })
-      .then((evt) => {
-        setWeatherData(evt.data);
-      })
-      .catch((err) => {
+        setWeatherData(response.data);
+    }catch (err){
         setError(err.message);
         setLoading(false)
         console.log('Error fetching weather data', err);
-      });
+      };
     }
 
-    const GetCountryName= (lat,long) => {
+    const GetCountryName= async (lat,long) => {
+      try{
       if(lat===true && long ===true) return GetCities(country)
-      axios.get('https://api.opencagedata.com/geocode/v1/json?',{
+      const response =await axios.get('https://api.opencagedata.com/geocode/v1/json?',{
         params:{
           key: process.env.REACT_APP_API_COUNTRY,
           q:lat+'%2C'+long,
         }
-      }).then((evt)=>{
-        setCountry(evt.data.results[0].components.country);
+      })
+        setCountry(response.data.results[0].components.country);
           GetCities(country)
-      }).catch(err=>{
+      
+      }catch(err){
         console.error(err.message);
         GetCities(country)
 
-      })
+      }
     }
     // Fetch list of cities (The API is not reliable to further processing required to prevent errors.)
-    const GetCities = (ctry)=>{
-      axios
+    const GetCities = async (ctry)=>{
+      try{
+      const res = await axios
         .post('https://countriesnow.space/api/v0.1/countries/cities', {
           country:  ctry?ctry:country,
         })
-        .then((res) => {setCities(res.data.data.filter(city => /^[A-Za-z\s]+$/.test(city)).map(city => city.toLowerCase())); setLoading(false)}) //remove invalid cities
-        .catch((e) => {setError(e.message); setLoading(false)});
+        setCities(res.data.data.filter(city => /^[A-Za-z\s]+$/.test(city)).map(city => city.toLowerCase())); setLoading(false) //remove invalid cities
+      }catch(e) {setError(e.message); setLoading(false)};
     }
   }, []);
 

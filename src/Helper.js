@@ -1,4 +1,4 @@
-export function GetGeoLocation() {
+export async function GetGeoLocation() {
   return new Promise((resolve, reject) => {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(
